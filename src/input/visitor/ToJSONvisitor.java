@@ -90,6 +90,7 @@ public class ToJSONvisitor {
 	
 	public Object visitPointNodeDatabase(PointNodeDatabase node, Object o) {
 	    StringBuilder sb = (StringBuilder) o;
+	    
 	    sb.append("{\n");
 	    sb.append("\"type\": \"pointDatabase\",\n");
 	    sb.append("\"points\": [\n");
@@ -103,6 +104,7 @@ public class ToJSONvisitor {
 	    }
 	    sb.append("\n]\n");
 	    sb.append("}");
+	    
 	    return sb;
 	}
 
