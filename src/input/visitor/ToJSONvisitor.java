@@ -12,20 +12,32 @@ public class ToJSONvisitor {
 	
 	public Object visitFigureNode(FigureNode node, Object o) {
 	    StringBuilder sb = (StringBuilder) o;
-	    sb.append("{\n")
-	            .append("\"type\": \"figure\",\n")
-	            .append("\"description\": \"").append(node.getDescription()).append("\",\n")
-	            .append("\"pointDatabase\": ").append(node.getPointsDatabase().accept((ComponentNodeVisitor) this, new StringBuilder())).append(",\n")
-	            .append("\"segmentDatabase\": ").append(node.getSegments().accept((ComponentNodeVisitor) this, new StringBuilder())).append("\n")
-	            .append("}");
+	    
+	    sb.append("{\n");
+	    sb.append("\"type\": \"figure\",\n");
+	  
+	    sb.append("\"description\": \"");
+	    sb.append(node.getDescription());
+	    sb.append("\",\n");
+	    
+	    sb.append("\"pointDatabase\": ")
+	    sb.append(node.getPointsDatabase().accept((ComponentNodeVisitor) this, new StringBuilder()));
+	    sb.append(",\n");
+	            
+	    sb.append("\"segmentDatabase\": ");
+	    sb.append(node.getSegments().accept((ComponentNodeVisitor) this, new StringBuilder()));
+	    sb.append("\n");
+	    sb.append("}");
+	    
 	    return sb;
 	}
 
 	public Object visitSegmentDatabaseNode(SegmentNodeDatabase node, Object o) {
 	    StringBuilder sb = (StringBuilder) o;
-	    sb.append("{\n")
-	            .append("\"type\": \"segmentDatabase\",\n")
-	            .append("\"segments\": [\n");
+	    
+	    sb.append("{\n");
+	    sb.append("\"type\": \"segmentDatabase\",\n");
+	    sb.append("\"segments\": [\n");
 	    List<SegmentNode> segments = node.getSegments();
 	    for (int i = 0; i < segments.size(); i++) {
 	        SegmentNode segmentNode = segments.get(i);
@@ -34,39 +46,53 @@ public class ToJSONvisitor {
 	            sb.append(",\n");
 	        }
 	    }
-	    sb.append("\n]\n")
-	            .append("}");
+	    sb.append("\n]\n");
+	    sb.append("}");
 	    return sb;
 	}
 
 	public Object visitSegmentNode(SegmentNode node, Object o) {
 	    StringBuilder sb = (StringBuilder) o;
-	    sb.append("{\n")
-	            .append("\"type\": \"segment\",\n")
-	            .append("\"startPoint\": \"").append(node.getPoint1().getName()).append("\",\n")
-	            .append("\"endPoint\": \"").append(node.getPoint2().getName()).append("\"\n")
-	            .append("}");
+	    
+	    sb.append("{\n");
+	    sb.append("\"type\": \"segment\",\n");
+	    sb.append("\"startPoint\": \"");
+	    sb.append(node.getPoint1().getName());
+	    sb.append("\",\n");
+	    sb.append("\"endPoint\": \"");
+	    sb.append(node.getPoint2().getName());
+	    sb.append("\"\n");
+	    sb.append("}");
+	    
 	    return sb;
 	}
 
 
 	public Object visitPointNode(PointNode node, Object o) {
 	    StringBuilder sb = (StringBuilder) o;
-	    sb.append("{\n")
-	            .append("\"type\": \"point\",\n")
-	            .append("\"name\": \"").append(node.getName()).append("\",\n")
-	            .append("\"x\": ").append(node.getX()).append(",\n")
-	            .append("\"y\": ").append(node.getY()).append("\n")
-	            .append("}");
+	    
+	    sb.append("{\n");
+	    sb.append("\"type\": \"point\",\n");
+	    sb.append("\"name\": \"");
+	    sb.append(node.getName());
+	    sb.append("\",\n");
+	    sb.append("\"x\": ");
+	    sb.append(node.getX());
+	    sb.append(",\n");
+	    sb.append("\"y\": ");
+	    sb.append(node.getY());
+	    sb.append("\n");
+	    sb.append("}");
+	    
 	    return sb;
 	}
 
 	
 	public Object visitPointNodeDatabase(PointNodeDatabase node, Object o) {
 	    StringBuilder sb = (StringBuilder) o;
-	    sb.append("{\n")
-	            .append("\"type\": \"pointDatabase\",\n")
-	            .append("\"points\": [\n");
+	    sb.append("{\n");
+	    sb.append("\"type\": \"pointDatabase\",\n");
+	    sb.append("\"points\": [\n");
 	    List<PointNode> points = node.getPoints();
 	    for (int i = 0; i < points.size(); i++) {
 	        PointNode pointNode = points.get(i);
@@ -75,8 +101,8 @@ public class ToJSONvisitor {
 	            sb.append(",\n");
 	        }
 	    }
-	    sb.append("\n]\n")
-	            .append("}");
+	    sb.append("\n]\n");
+	    sb.append("}");
 	    return sb;
 	}
 
