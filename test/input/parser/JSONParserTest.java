@@ -177,6 +177,20 @@ class JSONParserTest
 	
 	
 
-
+	@Test
+	void crisscross_square_test() {
+		ComponentNode node = JSONParserTest.runFigureParseTest("crisscross_square.json");
+		
+		assertTrue(node instanceof FigureNode);
+		UnparseVisitor unparseVisitor = new UnparseVisitor();
+		
+		StringBuilder sb = new StringBuilder();
+		// visit the figure node with the unparse visitor
+		AbstractMap.SimpleEntry<StringBuilder, Integer> input = new AbstractMap.SimpleEntry<>(sb, 0);
+		node.accept(unparseVisitor,  input);
+		
+		// print the result
+		System.out.println(sb.toString());
+	}
 
 }
