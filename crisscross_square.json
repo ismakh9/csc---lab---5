@@ -1,0 +1,91 @@
+//  D-H-L-P
+//  |X|X|X| 
+//  C-----O
+//  |X|X|X|
+//  B-----N
+//  |X|X|X|       
+//  A-E-I-M
+{
+  "Figure" :
+  {
+    "Description" : "Square with each point connected to all the points next to it and across from it",
+    "Points" :
+	  [
+	    {
+	      "name" : "A",
+		  "x" : -2,
+   	      "y" : -2
+		},
+	    {
+	      "name" : "B",
+		  "x" : -2,
+   	      "y" : -1
+		},
+	    {
+	      "name" : "C",
+		  "x" : -2,
+   	      "y" : 0
+		},
+	    {
+	      "name" : "D",
+		  "x" : -2,
+   	      "y" : 1
+		},
+	    {
+	      "name" : "E",
+		  "x" : -1,
+   	      "y" : 1
+		},
+	    {
+	      "name" : "F",
+		  "x" : 0,
+   	      "y" : 1
+		},
+	    {
+	      "name" : "G",
+		  "x" : 1,
+   	      "y" : 1
+		},
+	    {
+	      "name" : "H",
+		  "x" : 1,
+   	      "y" : 0
+		},
+	    {
+	      "name" : "I",
+		  "x" : 1,
+   	      "y" : -1
+		},
+	    {
+	      "name" : "J",
+		  "x" : 1,
+   	      "y" : -2
+		},
+	    {
+	      "name" : "K",
+		  "x" : 0,
+   	      "y" : -2
+		},
+	    {
+	      "name" : "L",
+		  "x" : -1,
+   	      "y" : -2
+		}
+	  ],
+  
+    "Segments" :
+      [
+	    {"A" : ["B", "G", "L"] },
+	    {"B" : ["C", "F", "I", "L"] },
+	    {"C" : ["D", "E", "H", "K"] },
+	    {"D" : ["E", "J"] },
+	    {"E" : ["F", "I", "L"] },
+	    {"F" : ["G", "H", "K"] },
+	    {"G" : ["H"] },
+	    {"H" : ["I"] },
+	    {"I" : ["J"] },
+	    {"J" : ["K"] },
+	    {"K" : ["L"] }
+      ]
+  }
+}

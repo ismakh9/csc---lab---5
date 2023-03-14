@@ -1,0 +1,100 @@
+{
+  "Figure" :
+  {
+    "Description" : "Two Diamonds with Points in the Middle and a 5 Point Trapezoid with All Points Connected and a Segment leading to Fake Point P",
+    "Points" :
+      [
+        {
+          "name" : "A",
+          "x" : 1,
+          "y" : 0
+        },
+        {
+          "name" : "B",
+          "x" : 0,
+          "y" : -1
+        },
+        {
+          "name" : "C",
+          "x" : 1,
+          "y" : -1
+        },
+        {
+          "name" : "D",
+          "x" : 2,
+          "y" : -1
+        },
+        {
+          "name" : "E",
+          "x" : 1,
+          "y" : -2
+        },
+        {
+          "name" : "F",
+          "x" : 5,
+          "y" : 0
+        },
+        {
+          "name" : "G",
+          "x" : 4,
+          "y" : -1
+        },
+        {
+          "name" : "H",
+          "x" : 5,
+          "y" : -1
+        },
+        {
+          "name" : "I",
+          "x" : 6,
+          "y" : -1
+        },
+        {
+          "name" : "J",
+          "x" : 5,
+          "y" : -2
+        },
+        {
+          "name" : "K",
+          "x" : 1,
+          "y" : -5
+        },
+        {
+          "name" : "L",
+          "x" : 3,
+          "y" : -5
+        },
+        {
+          "name" : "M",
+          "x" : 5,
+          "y" : -5
+        },
+        {
+          "name" : "N",
+          "x" : 2,
+          "y" : -7
+        },
+        {
+          "name" : "O",
+          "x" : 4,
+          "y" : -7
+        }
+      ],
+      
+    "Segments" :
+      [
+        {"A" : ["B", "C", "D"] },
+        {"B" : ["C", "E"] },
+        {"C" : ["D", "E"] },
+        {"D" : ["E"] } ,
+        {"F" : ["G", "H", "I"] },
+        {"G" : ["H", "J"] },
+        {"H" : ["I", "J"] },
+        {"I" : ["J"] },
+        {"K" : ["L", "M", "N", "O"] },
+        {"L" : ["M", "N", "O"] },
+        {"M" : ["N", "O"] },
+        {"N" : ["O", "P"] }
+      ]
+  }
+}
