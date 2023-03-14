@@ -20,7 +20,7 @@ public class ToJSONvisitor {
 	    sb.append(node.getDescription());
 	    sb.append("\",\n");
 	    
-	    sb.append("\"pointDatabase\": ")
+	    sb.append("\"pointDatabase\": ");
 	    sb.append(node.getPointsDatabase().accept((ComponentNodeVisitor) this, new StringBuilder()));
 	    sb.append(",\n");
 	            
