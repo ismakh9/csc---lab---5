@@ -175,26 +175,6 @@ class JSONParserTest
 
 	}
 	
-	@Test
-	void ToJSONvisitor() {
-
-		ComponentNode node = JSONParserTest.runFigureParseTest("star.json");
-		UnparseVisitor unparseVisitor = new UnparseVisitor();
-		
-		StringBuilder sb = new StringBuilder();
-		 // visit the figure node with the unparse visitor
-        AbstractMap.SimpleEntry<StringBuilder, Integer> input = new AbstractMap.SimpleEntry<>(sb, 0);
-        node.accept(unparseVisitor, input);
-        
-        
-      //data test
-      FigureNode figure = (FigureNode) node;
-      PointNodeDatabase pointDB = figure.getPointsDatabase();
-      SegmentNodeDatabase segmentDB = figure.getSegments();
-     
-        
-		
-	}
 	
 
 

@@ -49,6 +49,7 @@ public class GeometryBuilder {
    }
 
    public ComponentNode buildFigureNode(String description) {
+	   //build the figure
        return figureNode = new FigureNode(description, pointNodeDB, segmentNodeDB);
    }
 

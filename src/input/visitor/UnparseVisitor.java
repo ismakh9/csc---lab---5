@@ -32,22 +32,12 @@ public class UnparseVisitor implements ComponentNodeVisitor
 
 	        
 	     // Unparse the points
-	        for (PointNode point : node.getPointsDatabase().getPoints()) {
-	            sb.append(StringUtilities.indent(level + 2) +"point(" + point.getName() + ")" + " " + point.getX() + " " + point.getY() + "\n");
-	        }
+	        
+	        visitPointNodeDatabase(node.getPointsDatabase(), o);
 
 	        
 	        // Unparse the segments
-	        for (PointNode point : node.getPointsDatabase().getPoints()) {
-	            sb.append(StringUtilities.indent(level + 2) + point.getName() + " : ");
-	            for (PointNode endpoint : node.getPointsDatabase().getPoints()) {
-	                if (!point.equals(endpoint)) {
-	                    sb.append(endpoint.getName() + " ");
-	                }
-	            }
-	            sb.append("\n");
-	        }
-
+	        visitSegmentDatabaseNode(node.getSegments(), o);
 	        return sb;
 	}
 
@@ -59,12 +49,18 @@ public class UnparseVisitor implements ComponentNodeVisitor
         StringBuilder sb = pair.getKey();
         int level = pair.getValue();
         
-        sb.append(StringUtilities.indent(level + 1) + "Segments:\n");
         List<SegmentNode> segments = node.getSegments();
+        
         for (SegmentNode segment : segments) {
+        	 sb.append(StringUtilities.indent(level + 2) + segment.getPoint1().getName() + " : ");
+        	 if (!segment.getPoint2().equals(segment.getPoint2())) {
+                 sb.append(segment.getPoint2().getName() + " ");
+             }
+        	 
+             sb.append("\n");
             segment.accept(this, new AbstractMap.SimpleEntry<>(sb, level + 1));
         }
-	    return null;
+	    return sb;
 	}
 
 	/**
@@ -89,10 +85,11 @@ public class UnparseVisitor implements ComponentNodeVisitor
         List<PointNode> pointNames = node.getPoints();
     	for (PointNode pointName : pointNames) {
     		PointNode pointNode = node.getPoint(pointName);
+    		sb.append(visitPointNode(pointName, o));
     		pointNode.accept(this, new AbstractMap.SimpleEntry<>(sb, level));
     	}
 
-	    return null;
+	    return sb;
 	}
 	
 	@Override
@@ -107,7 +104,7 @@ public class UnparseVisitor implements ComponentNodeVisitor
         sb.append(StringUtilities.indent(level));
     	sb.append(node.getName() + " ");
     	sb.append("(" + node.getX() + ", " + node.getY() + ")\n");
-    	return null;
+    	return sb;
 	}
 
 }
