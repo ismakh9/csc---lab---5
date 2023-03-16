@@ -36,8 +36,14 @@ class JSONParserTest
 		
 	}
 	
-	private void figureTest(String filename) {
-		ComponentNode node = JSONParserTest.runFigureParseTest(filename);
+	
+	
+	//unparse
+	@Test
+	void crossing_symmetric_triangle_test()
+	{
+		
+		ComponentNode node = JSONParserTest.runFigureParseTest("crossing_symmetric_triangle.json");
 
 		assertTrue(node instanceof FigureNode);
 		UnparseVisitor unparseVisitor = new UnparseVisitor();
@@ -50,13 +56,7 @@ class JSONParserTest
 
         // print the result
         System.out.println(sb.toString());
-	}
-	
-	//unparse
-	@Test
-	void crossing_symmetric_triangle_test()
-	{
-		figureTest("crossing_symmetric_triangle.json");
+
 	}
 	@Test
 	public void testToJSONvisitor() {
@@ -81,44 +81,139 @@ class JSONParserTest
 	@Test
 	void collinear_line_segments_test()
 	{
-		figureTest("collinear_line_segments.json");
+		
+		ComponentNode node = JSONParserTest.runFigureParseTest("collinear_line_segments.json");
+
+		assertTrue(node instanceof FigureNode);
+		UnparseVisitor unparseVisitor = new UnparseVisitor();
+		
+
+		StringBuilder sb = new StringBuilder();
+		 // visit the figure node with the unparse visitor
+        AbstractMap.SimpleEntry<StringBuilder, Integer> input = new AbstractMap.SimpleEntry<>(sb, 0);
+        node.accept(unparseVisitor, input);
+
+        // print the result
+        System.out.println(sb.toString());
+
 	}
 	
 	@Test
 	void fully_connected_irregular_polygon_test()
 	{
-		figureTest("fully_connected_irregular_polygon.json");
+		
+		ComponentNode node = JSONParserTest.runFigureParseTest("fully_connected_irregular_polygon.json");
+
+		assertTrue(node instanceof FigureNode);
+		UnparseVisitor unparseVisitor = new UnparseVisitor();
+		
+
+		StringBuilder sb = new StringBuilder();
+		 // visit the figure node with the unparse visitor
+        AbstractMap.SimpleEntry<StringBuilder, Integer> input = new AbstractMap.SimpleEntry<>(sb, 0);
+        node.accept(unparseVisitor, input);
+
+        // print the result
+        System.out.println(sb.toString());
+
 	}
 	
 	@Test
 	void square_shape_test()
 	{
-		figureTest("square_Shape.json");
+		
+		ComponentNode node = JSONParserTest.runFigureParseTest("square_Shape.json");
+
+		assertTrue(node instanceof FigureNode);
+		UnparseVisitor unparseVisitor = new UnparseVisitor();
+		
+
+		StringBuilder sb = new StringBuilder();
+		 // visit the figure node with the unparse visitor
+        AbstractMap.SimpleEntry<StringBuilder, Integer> input = new AbstractMap.SimpleEntry<>(sb, 0);
+        node.accept(unparseVisitor, input);
+
+        // print the result
+        System.out.println(sb.toString());
+
 	}
 	
 	@Test
 	void octagon_shape_test()
 	{
-		figureTest("octagon.json");
+		
+		ComponentNode node = JSONParserTest.runFigureParseTest("octagon.json");
+
+		assertTrue(node instanceof FigureNode);
+		UnparseVisitor unparseVisitor = new UnparseVisitor();
+		
+
+		StringBuilder sb = new StringBuilder();
+		 // visit the figure node with the unparse visitor
+        AbstractMap.SimpleEntry<StringBuilder, Integer> input = new AbstractMap.SimpleEntry<>(sb, 0);
+        node.accept(unparseVisitor, input);
+
+        // print the result
+        System.out.println(sb.toString());
+
 	}
 	
 	@Test
 	void star_test()
 	{
-		figureTest("star.json");
+		
+		ComponentNode node = JSONParserTest.runFigureParseTest("star.json");
+
+		assertTrue(node instanceof FigureNode);
+		UnparseVisitor unparseVisitor = new UnparseVisitor();
+		
+
+		StringBuilder sb = new StringBuilder();
+		 // visit the figure node with the unparse visitor
+        AbstractMap.SimpleEntry<StringBuilder, Integer> input = new AbstractMap.SimpleEntry<>(sb, 0);
+        node.accept(unparseVisitor, input);
+
+        // print the result
+        System.out.println(sb.toString());
 	}
 	
 	@Test
 	void hex_tri_test()
 	{
-		figureTest("hex_tria.json");
+		
+		ComponentNode node = JSONParserTest.runFigureParseTest("hex_tria.json");
+
+		assertTrue(node instanceof FigureNode);
+		UnparseVisitor unparseVisitor = new UnparseVisitor();
+		
+
+		StringBuilder sb = new StringBuilder();
+		 // visit the figure node with the unparse visitor
+        AbstractMap.SimpleEntry<StringBuilder, Integer> input = new AbstractMap.SimpleEntry<>(sb, 0);
+        node.accept(unparseVisitor, input);
+
+        // print the result
+        System.out.println(sb.toString());
+        
+
 	}
 	
 	
 
 	@Test
 	void crisscross_square_test() {
-		figureTest("crisscross_square.json");
+		ComponentNode node = JSONParserTest.runFigureParseTest("crisscross_square.json");
+		
+		assertTrue(node instanceof FigureNode);
+		UnparseVisitor unparseVisitor = new UnparseVisitor();
+		
+		StringBuilder sb = new StringBuilder();
+		// visit the figure node with the unparse visitor
+		AbstractMap.SimpleEntry<StringBuilder, Integer> input = new AbstractMap.SimpleEntry<>(sb, 0);
+		node.accept(unparseVisitor,  input);
+		
+		// print the result
+		System.out.println(sb.toString());
 	}
 
 }
