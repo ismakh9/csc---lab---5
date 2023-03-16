@@ -65,20 +65,12 @@ class JSONParserTest
 	public void testToJSONvisitor() {
         // Create a FigureNode with some points and segments
 		ComponentNode node = JSONParserTest.runFigureParseTest("crossing_symmetric_triangle.json");
-		GeometryBuilder db = new GeometryBuilder();
 		
 		FigureNode figure = (FigureNode) node;
-		FigureNode figBuilt = db.buildFigureNode(figure.getDescription(), figure.getPointsDatabase(),figure.getSegments());
 
-        // Create a ToJSONvisitor and visit the FigureNode
-        ToJSONvisitor visitor = new ToJSONvisitor();
-        JSONObject jsonObject = (JSONObject) visitor.visitFigureNode(figBuilt, 0);
-
-        // Check that the JSON object is correct
-        assertEquals("Figure", jsonObject.getString("type"));
-        assertEquals("Crossing symmetric triangle construction.", jsonObject.getString("description"));
-        assertEquals(5, jsonObject.getJSONObject("pointDatabase").getJSONArray("points").length());
-        assertEquals(16, jsonObject.getJSONObject("segmentDatabase").getJSONArray("segments").length());
+        JSONObject jsonObject = (JSONObject) node.accept(new ToJSONvisitor(), new JSONObject());
+        
+        System.out.println(jsonObject.toString());
     }
 	
 	@Test

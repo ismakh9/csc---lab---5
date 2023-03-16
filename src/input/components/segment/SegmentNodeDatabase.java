@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Map.Entry;
 
 import input.components.ComponentNode;
 import input.components.point.PointNode;
@@ -81,16 +82,29 @@ public class SegmentNodeDatabase implements ComponentNode {
 	}
 
 
-	public List<SegmentNode> asSegmentList(){
+	public List<SegmentNode> asSegmentList() {
+		//could be a set so you dont have to check containment
+		List<SegmentNode> segments = new ArrayList<SegmentNode>();
+		List<PointNode> keys = new ArrayList<PointNode>();
 
-		// creates a new empty list and adds the values to the list.
-		List<SegmentNode> segments = new ArrayList<>();
-		for(PointNode point : _adjLists.keySet()) {
-			for(PointNode adjacent : _adjLists.get(point)) {
-				segments.add(new SegmentNode(point,adjacent));
+		for (Entry<PointNode, Set<PointNode>> entry : _adjLists.entrySet()) { 
+
+			keys.add(entry.getKey());
+
+			for (PointNode p : entry.getValue()) {
+
+				if (!keys.contains(p)) {
+
+					segments.add(new SegmentNode(entry.getKey(),p));
+
+				}
+
 			}
+
 		}
+
 		return segments;
+
 	}
 
 
