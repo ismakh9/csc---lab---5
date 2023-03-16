@@ -67,7 +67,7 @@ public class JSONParser
 	private PointNodeDatabase pointNodeExtraction(JSONObject figureObj) throws JSONException {
 		//copy the points into pointArray
 	    JSONArray pointsArray = figureObj.getJSONArray("Points");
-	    PointNodeDatabase pointNodeDB = new PointNodeDatabase();
+	    List<PointNode> pointNodes = new ArrayList<PointNode>();
 
 	    // Iterate over each point object and add to the database
 	    for (int i = 0; i < pointsArray.length(); i++) {
@@ -80,15 +80,16 @@ public class JSONParser
 	        
 	        PointNode pointNode = new PointNode(pointName, pointX, pointY);
 	        //store the points in the point node database
-	        pointNodeDB.put(pointNode);
+	        pointNodes.add(pointNode);
 	    }
-	    return pointNodeDB;
+	    
+	    return _builder.buildPointNodeDatabase(pointNodes);
 	}
 
 	private SegmentNodeDatabase segmentNodeExtraction(JSONObject figureObj, PointNodeDatabase pointNodeDB) throws JSONException, ParseException {
 		//copy the segments into segmentsarray
 		JSONArray segmentsArray = figureObj.getJSONArray("Segments");
-	    SegmentNodeDatabase segmentNodeDB = new SegmentNodeDatabase();
+	    SegmentNodeDatabase segmentNodeDB = _builder.buildSegmentNodeDatabase();
 
 	    // Iterate over each segment object and add to the database
 	    for (int i = 0; i < segmentsArray.length(); i++) {
