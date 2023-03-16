@@ -53,7 +53,7 @@ public class SegmentNode implements ComponentNode{
 	@Override
 	 public Object accept(ComponentNodeVisitor visitor, Object o)
 	 {
-	 return visitor.visitSegmentNode(this, o);
+		return null;
 	 }
 	
 	

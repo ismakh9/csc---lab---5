@@ -108,8 +108,7 @@ public class PointNodeDatabase implements ComponentNode {
 
 	@Override
 	public Object accept(ComponentNodeVisitor visitor, Object o) {
-		// TODO Auto-generated method stub
-		return null;
+		return visitor.visitPointNodeDatabase(this, o);
 	}
 
 

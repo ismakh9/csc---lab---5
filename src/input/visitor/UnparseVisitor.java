@@ -1,6 +1,8 @@
 package input.visitor;
 
 import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -28,40 +30,54 @@ public class UnparseVisitor implements ComponentNodeVisitor
 	        StringBuilder sb = pair.getKey();
 	        int level = pair.getValue();
 	        // Append the figure declaration line
-	        sb.append(StringUtilities.indent(level + 1) + node.getDescription() + "\n");
+	        sb.append("Figure:\n");
+	        sb.append(StringUtilities.indent(level + 1) + "Description:" + node.getDescription() + "\n");
 
 	        
 	     // Unparse the points
-	        
+	       
 	        visitPointNodeDatabase(node.getPointsDatabase(), o);
-
-	        
 	        // Unparse the segments
 	        visitSegmentDatabaseNode(node.getSegments(), o);
+
 	        return sb;
 	}
 
 	@Override
-	public Object visitSegmentDatabaseNode(SegmentNodeDatabase node, Object o)
-	{
-		@SuppressWarnings("unchecked")
-        AbstractMap.SimpleEntry<StringBuilder, Integer> pair = (AbstractMap.SimpleEntry<StringBuilder, Integer>)(o);
-        StringBuilder sb = pair.getKey();
-        int level = pair.getValue();
-        
-        List<SegmentNode> segments = node.getSegments();
-        
-        for (SegmentNode segment : segments) {
-        	 sb.append(StringUtilities.indent(level + 2) + segment.getPoint1().getName() + " : ");
-        	 if (!segment.getPoint2().equals(segment.getPoint2())) {
-                 sb.append(segment.getPoint2().getName() + " ");
-             }
-        	 
-             sb.append("\n");
-            segment.accept(this, new AbstractMap.SimpleEntry<>(sb, level + 1));
-        }
+	public Object visitSegmentDatabaseNode(SegmentNodeDatabase node, Object o) {
+	    @SuppressWarnings("unchecked")
+	    AbstractMap.SimpleEntry<StringBuilder, Integer> pair = (AbstractMap.SimpleEntry<StringBuilder, Integer>)(o);
+	    StringBuilder sb = pair.getKey();
+	    int level = pair.getValue();
+	    
+	    sb.append(StringUtilities.indent(level + 1) + "Segments:\n");
+	    //create hashmap that stores the endpoints that are adjacent to the start point
+	    Map<PointNode, List<SegmentNode>> segmentsByEndpoint = new HashMap<>();
+	    for (SegmentNode segment : node.getSegments()) {
+	        PointNode endpoint = segment.getPoint1();
+	        //check if hashmap doesn't contains a canonical element
+	        if (!segmentsByEndpoint.containsKey(endpoint)) {
+	        	//if not then crate new new hashmap to store it
+	            segmentsByEndpoint.put(endpoint, new ArrayList<>());
+	        }
+	        //add the adjacent elements
+	        segmentsByEndpoint.get(endpoint).add(segment);
+	    }
+	    //Traverse through the hashmap
+	    for (Map.Entry<PointNode, List<SegmentNode>> entry : segmentsByEndpoint.entrySet()) {
+	        PointNode endpoint = entry.getKey();
+	        // populate the string sb with the canonical 
+	        sb.append(StringUtilities.indent(level + 2) + endpoint.getName() + " : ");
+	        
+	        for (PointNode adjacent : node.getAdjacentPoints(endpoint)) {
+	        	//add the adjacent elements to the sb
+	            sb.append(adjacent.getName() + " ");
+	        }
+	        sb.append("\n");
+	    }
 	    return sb;
 	}
+
 
 	/**
 	 * This method should NOT be called since the segment database
@@ -81,13 +97,11 @@ public class UnparseVisitor implements ComponentNodeVisitor
         StringBuilder sb = pair.getKey();
         int level = pair.getValue();
         
-        // Visit all sub-nodes of the point database node
-        List<PointNode> pointNames = node.getPoints();
-    	for (PointNode pointName : pointNames) {
-    		PointNode pointNode = node.getPoint(pointName);
-    		sb.append(visitPointNode(pointName, o));
-    		pointNode.accept(this, new AbstractMap.SimpleEntry<>(sb, level));
-    	}
+        sb.append(StringUtilities.indent(level + 1) + "Points:\n");
+        for (PointNode point : node.getPoints()) {
+        	visitPointNode(point, o);
+        }
+
 
 	    return sb;
 	}
@@ -101,8 +115,8 @@ public class UnparseVisitor implements ComponentNodeVisitor
         int level = pair.getValue();
 
 		// Unparse the points
-        sb.append(StringUtilities.indent(level));
-    	sb.append(node.getName() + " ");
+        sb.append(StringUtilities.indent(level+2));
+    	sb.append( "Point(" +node.getName() + ")"+" ");
     	sb.append("(" + node.getX() + ", " + node.getY() + ")\n");
     	return sb;
 	}

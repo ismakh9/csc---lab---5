@@ -21,35 +21,30 @@ public class DefaultBuilder
     		                          PointNodeDatabase points,
     		                          SegmentNodeDatabase segments)
     {
-        return new FigureNode(description, points, segments);
+    	return null;
     }
     
     public SegmentNodeDatabase buildSegmentNodeDatabase()
     {
-        return new SegmentNodeDatabase();
+    	return null;
     }
     
     public void addSegmentToDatabase(SegmentNodeDatabase segments, PointNode from, PointNode to)
     {
-    	if (segments != null) segments.addUndirectedEdge(from, to);
     }
     
     public SegmentNode buildSegmentNode(PointNode pt1, PointNode pt2)
     {
-        return new SegmentNode(pt1, pt2);
+    	return null;
     }
     
     public PointNodeDatabase buildPointDatabaseNode(List<PointNode> points)
     {
-    	 PointNodeDatabase pointNodeDB = new PointNodeDatabase();
-         for (PointNode pointNode : points) {
-             pointNodeDB.put(pointNode);
-         }
-         return pointNodeDB;
+    	return null;
     }
     
     public PointNode buildPointNode(String name, double x, double y)
     {
-    	return new PointNode(name, x, y);
+    	return null;
     }
 }

@@ -20,6 +20,7 @@ import java.util.Set;
 
 import input.components.ComponentNode;
 import input.components.point.PointNode;
+import input.components.point.PointNodeDatabase;
 import input.visitor.ComponentNodeVisitor;
 import utilities.io.StringUtilities;
 
@@ -139,9 +140,9 @@ public class SegmentNodeDatabase implements ComponentNode {
 
 	@Override
 	public Object accept(ComponentNodeVisitor visitor, Object o) {
-		// TODO Auto-generated method stub
-		return null;
+		return visitor.visitSegmentDatabaseNode(this, o);
 	}
+
 }
 
 
