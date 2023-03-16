@@ -28,7 +28,7 @@ class JSONParserTest
 {
 	public static ComponentNode runFigureParseTest(String filename)
 	{
-		JSONParser parser = new JSONParser();
+		JSONParser parser = new JSONParser(new GeometryBuilder());
 
 		String figureStr = utilities.io.FileUtilities.readFileFilterComments(filename);
 

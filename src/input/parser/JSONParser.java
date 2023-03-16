@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.json.JSONTokener;
 
+import input.builder.DefaultBuilder;
 import input.components.*;
 import input.components.point.PointNode;
 import input.components.point.PointNodeDatabase;
@@ -18,10 +19,12 @@ import input.exception.ParseException;
 public class JSONParser
 {
 	protected ComponentNode  _astRoot;
+	protected DefaultBuilder _builder;
 
-	public JSONParser()
+	public JSONParser(DefaultBuilder builder)
 	{
 		_astRoot = null;
+		_builder = builder;
 	}
 
 	private void error(String message)
@@ -29,7 +32,7 @@ public class JSONParser
 		throw new ParseException("Parse error: " + message);
 	}
 	
-	public static ComponentNode parse(String str) throws ParseException {
+	public ComponentNode parse(String str) throws ParseException {
 	    try {
 	        // Parsing is accomplished via the JSONTokener class.
 	        JSONTokener tokenizer = new JSONTokener(str);
@@ -53,9 +56,7 @@ public class JSONParser
 	        SegmentNodeDatabase segmentNodeDB = segmentNodeExtraction(figureObj, pointNodeDB);
 
 	        // Extracting figure
-	        FigureNode figureNode = new FigureNode(description, pointNodeDB, segmentNodeDB);
-
-	        return figureNode;
+	        return _builder.buildFigureNode(description, pointNodeDB, segmentNodeDB);
 
 	    } catch (JSONException e) {
 	        // If there was an error while parsing the JSON, throw a ParseException
@@ -63,7 +64,7 @@ public class JSONParser
 	    }
 	}
 
-	private static PointNodeDatabase pointNodeExtraction(JSONObject figureObj) throws JSONException {
+	private PointNodeDatabase pointNodeExtraction(JSONObject figureObj) throws JSONException {
 		//copy the points into pointArray
 	    JSONArray pointsArray = figureObj.getJSONArray("Points");
 	    PointNodeDatabase pointNodeDB = new PointNodeDatabase();
@@ -84,7 +85,7 @@ public class JSONParser
 	    return pointNodeDB;
 	}
 
-	private static SegmentNodeDatabase segmentNodeExtraction(JSONObject figureObj, PointNodeDatabase pointNodeDB) throws JSONException, ParseException {
+	private SegmentNodeDatabase segmentNodeExtraction(JSONObject figureObj, PointNodeDatabase pointNodeDB) throws JSONException, ParseException {
 		//copy the segments into segmentsarray
 		JSONArray segmentsArray = figureObj.getJSONArray("Segments");
 	    SegmentNodeDatabase segmentNodeDB = new SegmentNodeDatabase();
