@@ -2,7 +2,7 @@
 {
   "Figure" :
   {
-    "Description" : "A seqeunce of collinear line segments mimicking one line with 6 points.",
+    "Description" : "A sequence of collinear line segments mimicking one line with 6 points.",
     "Points" :
 	  [
 	    {

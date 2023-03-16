@@ -21,30 +21,19 @@ public class DefaultBuilder
     		                          PointNodeDatabase points,
     		                          SegmentNodeDatabase segments)
     {
-    	return null;
+        return null;
     }
     
-    public SegmentNodeDatabase buildSegmentNodeDatabase()
-    {
-    	return null;
-    }
+    public SegmentNodeDatabase buildSegmentNodeDatabase() {return null;}
     
     public void addSegmentToDatabase(SegmentNodeDatabase segments, PointNode from, PointNode to)
     {
+    	if (segments != null) segments.addUndirectedEdge(from, to);
     }
     
-    public SegmentNode buildSegmentNode(PointNode pt1, PointNode pt2)
-    {
-    	return null;
-    }
+    public SegmentNode buildSegmentNode(PointNode pt1, PointNode pt2) {return null;}
     
-    public PointNodeDatabase buildPointDatabaseNode(List<PointNode> points)
-    {
-    	return null;
-    }
+    public PointNodeDatabase buildPointNodeDatabase(List<PointNode> points) {return null;}
     
-    public PointNode buildPointNode(String name, double x, double y)
-    {
-    	return null;
-    }
+    public PointNode buildPointNode(String name, double x, double y) {return null;}
 }
