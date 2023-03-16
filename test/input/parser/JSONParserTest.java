@@ -70,7 +70,7 @@ class JSONParserTest
 
         JSONObject jsonObject = (JSONObject) node.accept(new ToJSONvisitor(), new JSONObject());
         
-        System.out.println(jsonObject.toString());
+        System.out.println(jsonObject.toString(5));
     }
 	
 	@Test
