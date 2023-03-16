@@ -33,27 +33,27 @@ class JSONParserTest
 		String figureStr = utilities.io.FileUtilities.readFileFilterComments(filename);
 
 		return parser.parse(figureStr);
-		
+
 	}
-	
+
 	private void unparseTest(String filename) {
 		ComponentNode node = JSONParserTest.runFigureParseTest(filename);
 
 		assertTrue(node instanceof FigureNode);
 		UnparseVisitor unparseVisitor = new UnparseVisitor();
-		
+
 
 		StringBuilder sb = new StringBuilder();
-		 // visit the figure node with the unparse visitor
-        AbstractMap.SimpleEntry<StringBuilder, Integer> input = new AbstractMap.SimpleEntry<>(sb, 0);
-        node.accept(unparseVisitor, input);
+		// visit the figure node with the unparse visitor
+		AbstractMap.SimpleEntry<StringBuilder, Integer> input = new AbstractMap.SimpleEntry<>(sb, 0);
+		node.accept(unparseVisitor, input);
 
-        // print the result
-        System.out.println(sb.toString());
+		// print the result
+		System.out.println(sb.toString());
 	}
-	
-	
-	
+
+
+
 	//unparse
 	@Test
 	void crossing_symmetric_triangle_test()
@@ -63,53 +63,53 @@ class JSONParserTest
 	}
 	@Test
 	public void testToJSONvisitor() {
-        // Create a FigureNode with some points and segments
+		// Create a FigureNode with some points and segments
 		ComponentNode node = JSONParserTest.runFigureParseTest("crossing_symmetric_triangle.json");
-		
+
 		FigureNode figure = (FigureNode) node;
 
-        JSONObject jsonObject = (JSONObject) node.accept(new ToJSONvisitor(), new JSONObject());
-        
-        System.out.println(jsonObject.toString(5));
-    }
-	
+		JSONObject jsonObject = (JSONObject) node.accept(new ToJSONvisitor(), new JSONObject());
+
+		System.out.println(jsonObject.toString(5));
+	}
+
 	@Test
 	void collinear_line_segments_test()
 	{
 		unparseTest("collinear_line_segments.json");
 	}
-	
+
 	@Test
 	void fully_connected_irregular_polygon_test()
 	{
 		unparseTest("fully_connected_irregular_polygon.json");
 	}
-	
+
 	@Test
 	void square_shape_test()
 	{
 		unparseTest("square_Shape.json");
 	}
-	
+
 	@Test
 	void octagon_shape_test()
 	{
 		unparseTest("octagon.json");
 	}
-	
+
 	@Test
 	void star_test()
 	{
 		unparseTest("star.json");
 	}
-	
+
 	@Test
 	void hex_tri_test()
 	{
 		unparseTest("hex_tria.json");
 	}
-	
-	
+
+
 
 	@Test
 	void crisscross_square_test() {

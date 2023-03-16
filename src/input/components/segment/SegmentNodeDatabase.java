@@ -60,19 +60,16 @@ public class SegmentNodeDatabase implements ComponentNode {
 		else {
 			EdgePointSet.add(pN2);
 		}
-
 	}
 
 
 	public void addUndirectedEdge(PointNode pN1, PointNode pN2) {
 		addDirectedEdge(pN1, pN2);
 		addDirectedEdge(pN2, pN1);
-
 	}
 
 
 	public void addAdjacencyList(PointNode pN, List<PointNode> pNList) {
-
 		Set<PointNode> adjacentPoints = _adjLists.get(pN);
 		if (adjacentPoints != null) {
 			for(PointNode point : adjacentPoints ) {
@@ -83,33 +80,24 @@ public class SegmentNodeDatabase implements ComponentNode {
 
 
 	public List<SegmentNode> asSegmentList() {
-		//could be a set so you dont have to check containment
+		//could be a set so you don't have to check containment
 		List<SegmentNode> segments = new ArrayList<SegmentNode>();
 		List<PointNode> keys = new ArrayList<PointNode>();
 
 		for (Entry<PointNode, Set<PointNode>> entry : _adjLists.entrySet()) { 
-
 			keys.add(entry.getKey());
-
+			
 			for (PointNode p : entry.getValue()) {
-
 				if (!keys.contains(p)) {
-
 					segments.add(new SegmentNode(entry.getKey(),p));
-
 				}
-
 			}
-
 		}
-
 		return segments;
-
 	}
 
-
+	
 	public List<SegmentNode> asUniqueSegmentList(){
-
 		//System.out.println("testing");
 
 		// creates a new empty list and adds only unique values to the list.
@@ -125,6 +113,7 @@ public class SegmentNodeDatabase implements ComponentNode {
 		return segments;
 	}
 
+	
 	public List<SegmentNode> getSegments() {
 		List<SegmentNode> segments = new ArrayList<SegmentNode>();
 		Set<SegmentNode> visited = new HashSet<SegmentNode>();
@@ -138,26 +127,22 @@ public class SegmentNodeDatabase implements ComponentNode {
 				}
 			}
 		}
-
 		return segments;
 	}
+
 	
 	public List<PointNode> getAdjacentPoints(PointNode point) {
-	    List<PointNode> adjacentPoints = new ArrayList<>();
-	    Set<PointNode> connectedPoints = _adjLists.get(point);
-	    for (PointNode connectedPoint : connectedPoints) {
-	        adjacentPoints.add(connectedPoint);
-	    }
-	    return adjacentPoints;
+		List<PointNode> adjacentPoints = new ArrayList<>();
+		Set<PointNode> connectedPoints = _adjLists.get(point);
+		for (PointNode connectedPoint : connectedPoints) {
+			adjacentPoints.add(connectedPoint);
+		}
+		return adjacentPoints;
 	}
-	
 
+	
 	@Override
 	public Object accept(ComponentNodeVisitor visitor, Object o) {
 		return visitor.visitSegmentDatabaseNode(this, o);
 	}
-
 }
-
-
-

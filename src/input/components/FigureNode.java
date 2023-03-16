@@ -32,10 +32,11 @@ public class FigureNode implements ComponentNode
 		_points = points;
 		_segments = segments;
 	}
+	
 	@Override
-	 public Object accept(ComponentNodeVisitor visitor, Object o)
-	 {
+	public Object accept(ComponentNodeVisitor visitor, Object o)
+	{
 		return visitor.visitFigureNode(this, o);
-	 }
+	}
 
 }

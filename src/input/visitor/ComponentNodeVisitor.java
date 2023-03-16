@@ -21,9 +21,9 @@ public interface ComponentNodeVisitor
 	Object visitFigureNode(FigureNode node, Object o);
 
 	Object visitSegmentDatabaseNode(SegmentNodeDatabase node, Object o);
-	
+
 	Object visitSegmentNode(SegmentNode node, Object o);
-	
+
 	Object visitPointNode(PointNode node, Object o);
 
 	Object visitPointNodeDatabase(PointNodeDatabase node, Object o);

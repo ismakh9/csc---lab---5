@@ -20,8 +20,6 @@ import utilities.io.StringUtilities;
 import utilities.math.MathUtilities;
 
 
-
-
 public class PointNodeDatabase implements ComponentNode {
 
 	protected Set<PointNode> _points;
@@ -71,14 +69,12 @@ public class PointNodeDatabase implements ComponentNode {
 	//	}
 	//	return null;
 	//}
-	//
-	//
+
+
 	public PointNode getPoint(PointNode pN) {return getPoint(pN.getX(),pN.getY());}
 
-
 	public PointNode getPoint(double x, double y) {
-	//	
-	//	// searching _points for the (x, y) point and returns the point object 
+		// searching _points for the (x, y) point and returns the point object 
 		for (PointNode point : _points) {
 			if (MathUtilities.doubleEquals(x, point.getX()) &&
 					(MathUtilities.doubleEquals(point.getY(),y))) {
@@ -97,19 +93,18 @@ public class PointNodeDatabase implements ComponentNode {
 
 		return points;
 	}
+	
 	public PointNode getPoint(String name) {
-	    for (PointNode point : _points) {
-	        if (point.getName().equals(name)) {
-	            return point;
-	        }
-	    }
-	    return null;
+		for (PointNode point : _points) {
+			if (point.getName().equals(name)) {
+				return point;
+			}
+		}
+		return null;
 	}
 
 	@Override
 	public Object accept(ComponentNodeVisitor visitor, Object o) {
 		return visitor.visitPointNodeDatabase(this, o);
 	}
-
-
 }
