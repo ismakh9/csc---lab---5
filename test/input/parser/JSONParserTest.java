@@ -4,12 +4,6 @@ package input.parser;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
@@ -17,13 +11,8 @@ import input.builder.DefaultBuilder;
 import input.builder.GeometryBuilder;
 import input.components.ComponentNode;
 import input.components.FigureNode;
-import input.components.point.PointNode;
-import input.components.point.PointNodeDatabase;
-import input.components.segment.SegmentNodeDatabase;
-import input.exception.ParseException;
 import input.visitor.ToJSONvisitor;
 import input.visitor.UnparseVisitor;
-import utilities.io.FileUtilities;
 
 class JSONParserTest
 {
@@ -100,15 +89,15 @@ class JSONParserTest
 	@Test
 	void square_shape_test()
 	{
-		unparseTest("square_Shape.json");
-		toJSONVisitorTest("square_Shape.json");
+		unparseTest("single_square.json");
+		toJSONVisitorTest("single_square.json");
 	}
 
 	@Test
-	void octagon_shape_test()
+	void Snake_shape_test()
 	{
-		unparseTest("octagon.json");
-		toJSONVisitorTest("octagon.json");
+		unparseTest("snake.json");
+		toJSONVisitorTest("snake.json");
 	}
 
 	@Test
