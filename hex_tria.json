@@ -1,3 +1,16 @@
+// A visualization of the hexagon with triangle: 
+//       B
+//     / | \
+//    /  |  \
+//   A   |   C
+//   | \ | / |
+//   |  \G/  |
+//   |       |
+//   F       D
+//    \     /
+//     \   /
+//       E
+
 {
   "Figure": {
     "Description": "Hexagon with points forming a triangle",

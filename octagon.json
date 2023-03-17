@@ -1,6 +1,15 @@
+// A visualization of the octagon: 
+//     E---D
+//    /     \
+//   F       C
+//   |       |
+//   G       B
+//    \     /
+//     H---A
+//
 {
   "Figure" : {
-    "Description" : "Regular octagon",
+    "Description" : "A regular octagon",
     "Points" : [
       {"name": "A", "x": 5, "y": 0},
       {"name": "B", "x": 8, "y": 3},

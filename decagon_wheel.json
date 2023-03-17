@@ -1,3 +1,15 @@
+// A visualization of the decagon: 
+// * all points are connected to each other *
+//       ----A-----B
+//      /           \
+//     J             C
+//    /               \
+//   I                 D
+//    \               /
+//     \             E
+//      \           /
+//       H---G-----F
+//          
 {
   "Figure" :
   {

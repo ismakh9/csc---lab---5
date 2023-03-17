@@ -1,3 +1,9 @@
+// A visualization of the square: 
+//   B------C
+//   |      |
+//   |      |
+//   |      |
+//   A------D
 {
   "Figure" :
   {

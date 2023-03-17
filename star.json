@@ -1,3 +1,18 @@
+// A visualization of the star figure: 
+//            E
+//          / | \
+//         /  |  \
+//        F   |   D
+//       / \  |  / \
+//      /   \ | /   \
+//     G      I      C
+//      \   / | \   /
+//       \ /  |  \ /
+//        H   |   B
+//         \  |  /
+//          \ | /
+//            A
+//
 {
   "Figure" : {
     "Description" : "Star construction.",
