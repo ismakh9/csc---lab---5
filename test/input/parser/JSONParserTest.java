@@ -13,6 +13,7 @@ import java.util.Set;
 import org.json.JSONObject;
 import org.junit.jupiter.api.Test;
 
+import input.builder.DefaultBuilder;
 import input.builder.GeometryBuilder;
 import input.components.ComponentNode;
 import input.components.FigureNode;
@@ -52,7 +53,6 @@ class JSONParserTest
         System.out.println(sb.toString() + "\n");
 	}
 	
-	@Test
 	public static void toJSONVisitorTest(String filename) {
         // Create a FigureNode with some points and segments
 		ComponentNode node = JSONParserTest.runFigureParseTest(filename);
@@ -64,6 +64,17 @@ class JSONParserTest
         System.out.println("Reconstructed JSON version of " + filename);
         System.out.println(jsonObject.toString(5) + "\n");
     }
+	
+	@Test
+	void defaultBuilderTest() {
+		JSONParser parser = new JSONParser(new DefaultBuilder());
+
+		String figureStr = utilities.io.FileUtilities.readFileFilterComments("crossing_symmetric_triangle.json");
+
+		FigureNode node = (FigureNode) parser.parse(figureStr);
+		
+		assertEquals(null, node);
+	}
 	
 	@Test
 	void crossing_symmetric_triangle_test()

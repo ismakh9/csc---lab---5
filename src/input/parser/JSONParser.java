@@ -105,6 +105,7 @@ public class JSONParser
 		
 		// Create the Segment Node Database 
 		SegmentNodeDatabase segmentNodeDB = _builder.buildSegmentNodeDatabase();
+		if (segmentNodeDB == null) return null;
 
 		// Iterate over each segment object and add to the database
 		for (int i = 0; i < segmentsArray.length(); i++) {
